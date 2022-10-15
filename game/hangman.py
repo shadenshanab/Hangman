@@ -33,12 +33,8 @@ class Hangman():
         
         return [i for i, char in enumerate(self.word_to_guess) if letter == char]
 
-    def is_invalid_letter(self, input_):
-        """
-        Method to validate if an user input is not just a letter (it means the
-        input is a number or a text with more than 1 char)
-        :param input_: String, user input to be validated
-        """
+    def is_invalid_letter(self, input_): # if the input is a number or a text with more than 1 char (invalid)
+      
         return input_.isdigit() or (input_.isalpha() and len(input_) > 1)
 
     def print_game_status(self):  # print the word to guess blankspaces with the remaining attempts and the guessed letters
@@ -73,12 +69,12 @@ class Hangman():
                 print('You already have guessed that letter')
                 continue
 
-            if user_input in self.word_to_guess: 
-                indexes = self.find_indexes(user_input)
-                self.update_progress(user_input, indexes)
+            if user_input in self.word_to_guess: #user guessed a letter correctly
+                indexes = self.find_indexes(user_input) # add the letter to its index
+                self.update_progress(user_input, indexes) # update progress
                 # If there is no letter to find in the word
-                if self.game_progress.count('_') == 0:
-                    print('\nWinner Winner Mansaf Dinner!')
+                if self.game_progress.count('_') == 0: #count the spaces left in the word to guess
+                    print('\nGood job! You won!')
                     print('The word is: {0}'.format(self.word_to_guess))
                     quit()
             else:
