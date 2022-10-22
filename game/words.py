@@ -1,0 +1,4 @@
+options = [
+    'PROGRAMMING', 'SOFTWARE', 'JAVASCRIPT', 'PYTHON', 'DJANGO',
+    'RUBYONRAILS'
+]

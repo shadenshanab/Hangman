@@ -1,4 +1,5 @@
 import random
+from words import options
 
 
 HANGMAN = [
@@ -12,16 +13,29 @@ HANGMAN = [
 ]
 
 # options must be 5 letters or over
-options = [
-    'PROGRAMMING', 'SOFTWARE', 'JAVASCRIPT', 'PYTHON', 'DJANGO',
-    'RUBYONRAILS'
-]
+# options = [
+#     'PROGRAMMING', 'SOFTWARE', 'JAVASCRIPT', 'PYTHON', 'DJANGO',
+#     'RUBYONRAILS'
+# ]
 
 class Hangman():
     def __init__(self, word_to_guess): #constructor with base case
         self.failed_attempts = 0
         self.word_to_guess = word_to_guess
         self.game_progress = list('_' * len(self.word_to_guess))
+
+    def about_game(self):
+
+        print ("""
+               **************************************************************************************
+               **        A Hangman Game is about guessing letters (A-Z) to form the words.         **
+               **            If you guesses the right letter that is within the word,              **
+               **                 the letter appears at its correct position.                      **
+               **  you have to guess the correct word until a man is hung, then the game is over.  **
+               ** _________________________________________________________________________________**
+               **                            Get ready to play Hangman!                            **
+               **************************************************************************************
+               """)
 
     def find_indexes(self, letter): #takes a letter and returns a list with the indexes in the word to guess
         
@@ -55,6 +69,8 @@ class Hangman():
         return user_input
 
     def play(self): #prompts the user for a letter and plays the game until the user guesses the word or lose his attempts
+
+        self.about_game()
        
         while self.failed_attempts < len(HANGMAN): #still have chances
             self.print_game_status() #what the user have done so far
@@ -82,6 +98,7 @@ class Hangman():
         print("\nYou lost!" + 'The word is: {0}'.format(self.word_to_guess)) #if we have to chances left it leaves the loop and comes to this
 
 if __name__ == '__main__':
-    word_to_guess = random.choice(options)
+    # print (options)
+    word_to_guess = random.choice(options) # the options word inside (words.py) file
     hangman = Hangman(word_to_guess)
     hangman.play()
